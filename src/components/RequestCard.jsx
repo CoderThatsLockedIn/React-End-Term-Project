@@ -15,7 +15,10 @@ const RequestCard = ({ request }) => {
   const isOwner = user?.uid === request.userId;
   const hasOffered = request.helperIds?.includes(user?.uid);
 
-  // --- OFFER HELP ---
+  // --- HELPER FUNCTION TO MASK EMAIL ---
+  // Turns "akshay@gmail.com" into "akshay"
+  const getDisplayName = (email) => email ? email.split('@')[0] : "Anonymous";
+
   const handleOfferHelp = async () => {
     if (!user) return alert("Please log in!");
     setLoading(true);
@@ -29,10 +32,8 @@ const RequestCard = ({ request }) => {
     setLoading(false);
   };
 
-  // --- WITHDRAW HELP (The New Part!) ---
   const handleWithdrawHelp = async () => {
-    if (!window.confirm("Are you sure you want to withdraw your offer to help?")) return;
-    
+    if (!window.confirm("Are you sure?")) return;
     setLoading(true);
     try {
       const requestRef = doc(db, "requests", request.id);
@@ -40,22 +41,15 @@ const RequestCard = ({ request }) => {
         helperIds: arrayRemove(user.uid),
         helperEmails: arrayRemove(user.email)
       });
-      
-      // Optional: If no one is left helping, reset status to open
       if (request.helperIds.length <= 1) {
         await updateDoc(requestRef, { status: "open" });
       }
-      
-      alert("You have withdrawn your offer to help.");
-    } catch (e) {
-      console.error(e);
-      alert("Error withdrawing help.");
-    }
+    } catch (e) { console.error(e); }
     setLoading(false);
   };
 
   const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this post?")) {
+    if (window.confirm("Are you sure?")) {
       setLoading(true);
       try { await deleteDoc(doc(db, "requests", request.id)); } catch (e) { console.error(e); }
       setLoading(false);
@@ -107,7 +101,8 @@ const RequestCard = ({ request }) => {
             <p className="request-desc">{request.description}</p>
             <div className="request-meta">
               <span>📍 {request.location}</span>
-              <span>📧 Contact: {request.userEmail}</span>
+              {/* CHANGE 1: Mask the main contact email */}
+              <span>👤 Posted by: {getDisplayName(request.userEmail)}</span>
             </div>
           </>
         )}
@@ -115,12 +110,16 @@ const RequestCard = ({ request }) => {
         {isOwner && request.helperEmails?.length > 0 && (
           <div className="volunteer-list">
             <h4>People ready to help:</h4>
-            <ul>{request.helperEmails.map((email, index) => <li key={index}>✉️ {email}</li>)}</ul>
+            <ul>
+              {/* CHANGE 2: Mask the volunteer emails */}
+              {request.helperEmails.map((email, index) => (
+                <li key={index}>🙋‍♂️ {getDisplayName(email)}</li>
+              ))}
+            </ul>
           </div>
         )}
       </div>
       
-      {/* BUTTON LOGIC: If owner, show nothing. If helper, show Withdraw. If stranger, show Offer. */}
       {!isOwner && (
         hasOffered ? (
           <button className="help-btn withdraw" onClick={handleWithdrawHelp} disabled={loading}>
