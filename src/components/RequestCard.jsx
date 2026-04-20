@@ -1,5 +1,5 @@
 import { db, auth } from "../services/services";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc, arrayUnion, arrayRemove } from "firebase/firestore"; 
 import { useState } from "react";
 
 const RequestCard = ({ request }) => {
