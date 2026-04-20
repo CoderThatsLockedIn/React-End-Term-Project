@@ -8,7 +8,6 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [myRequests, setMyRequests] = useState([]);
   const [helpingRequests, setHelpingRequests] = useState([]);
-  const [joinedEvents, setJoinedEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,36 +15,47 @@ const Dashboard = () => {
       setUser(currentUser);
       
       if (currentUser) {
-        // 1. Events I've Joined
-        const qEvents = query(
-          collection(db, "events"), 
-          where("volunteers", "array-contains", currentUser.uid)
-        );
-        const unsubEvents = onSnapshot(qEvents, (snapshot) => {
-          setJoinedEvents(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        });
-
-        // 2. My Personal Requests
+        // 1. My Personal Requests
         const qMyReqs = query(
           collection(db, "requests"), 
           where("userId", "==", currentUser.uid)
         );
-        const unsubMyReqs = onSnapshot(qMyReqs, (snapshot) => {
-          setMyRequests(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        });
 
-        // 3. Requests I am Helping With
+        const unsubMyReqs = onSnapshot(qMyReqs, 
+          (snapshot) => {
+            setMyRequests(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+          },
+          (error) => {
+            if (error.code === 'permission-denied') {
+              console.warn("Permission denied caught in MyRequests listener (likely due to deletion).");
+            } else {
+              console.error("Firestore Error in MyRequests:", error);
+            }
+          }
+        );
+
+        // 2. Requests I am Helping With
         const qHelping = query(
           collection(db, "requests"), 
           where("helperIds", "array-contains", currentUser.uid)
         );
-        const unsubHelping = onSnapshot(qHelping, (snapshot) => {
-          setHelpingRequests(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-          setLoading(false);
-        });
+
+        const unsubHelping = onSnapshot(qHelping, 
+          (snapshot) => {
+            setHelpingRequests(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            setLoading(false);
+          },
+          (error) => {
+            if (error.code === 'permission-denied') {
+              console.warn("Permission denied caught in HelpingRequests listener.");
+            } else {
+              console.error("Firestore Error in HelpingRequests:", error);
+            }
+            setLoading(false);
+          }
+        );
 
         return () => {
-          unsubEvents();
           unsubMyReqs();
           unsubHelping();
         };
@@ -86,18 +96,6 @@ const Dashboard = () => {
             helpingRequests.map(req => <RequestCard key={req.id} request={req} />)
           ) : (
             <div className="empty-state"><p>You haven't offered help yet.</p></div>
-          )}
-        </div>
-      </section>
-
-      {/* Section 3: Joined Events */}
-      <section className="dashboard-section">
-        <h2 className="section-title">Events I'm Volunteering For</h2>
-        <div className="dashboard-grid">
-          {joinedEvents.length > 0 ? (
-            joinedEvents.map(evt => <EventCard key={evt.id} event={evt} />)
-          ) : (
-            <div className="empty-state"><p>No events joined yet.</p></div>
           )}
         </div>
       </section>
