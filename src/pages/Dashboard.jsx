@@ -95,24 +95,6 @@ const Dashboard = () => {
           )}
         </div>
       </section>
-
-      {/* Section 3: Joined Events */}
-      <section className="dashboard-section">
-        <h2 className="section-title">Events I'm Volunteering For</h2>
-        <div className="dashboard-grid">
-          {joinedEvents.length > 0 ? (
-            joinedEvents.map(evt => (
-              // Ensure EventCard is defined/imported or replace with a generic div
-              <div key={evt.id} className="event-card-simple">
-                <h3>{evt.title}</h3>
-                <p>📍 {evt.location}</p>
-              </div>
-            ))
-          ) : (
-            <div className="empty-state"><p>No events joined yet.</p></div>
-          )}
-        </div>
-      </section>
     </div>
   );
 };
