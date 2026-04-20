@@ -1,0 +1,614 @@
+/* Login & Signup Page Layout */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh; /* Centers the card vertically */
+  padding: 20px;
+}
+
+.auth-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-card h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.auth-card p.error-msg {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  border: 1px solid #fee2e2;
+}
+
+/* Form Styling */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.auth-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* src/pages/pages.css */
+
+/* src/pages/pages.css */
+
+/* We use 'body' to make this selector stronger than any global button styles */
+body .auth-form button[type="submit"] {
+  width: 100%;
+  background-color: #2563eb !important; /* Direct Hex code to be safe */
+  color: #ffffff !important;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  margin-top: 10px;
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* This targets the hover state specifically with higher priority */
+body .auth-form button[type="submit"]:hover {
+  background-color: #1d4ed8 !important; /* Solid Darker Blue */
+  color: #ffffff !important;           /* Force White Text */
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Ensure no other state (like focus) turns it white */
+body .auth-form button[type="submit"]:focus,
+body .auth-form button[type="submit"]:active {
+  background-color: #1e40af !important;
+  color: #ffffff !important;
+}
+
+/* Toggle Link Styling */
+.auth-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.auth-toggle-btn:hover {
+  color: var(--primary-hover);
+}
+
+/* src/pages/pages.css */
+
+/* src/pages/pages.css */
+
+.dashboard-container {
+  max-width: 1100px;
+  margin: 60px auto; /* Huge margin at the top/bottom for breathing room */
+  padding: 0 30px;
+}
+
+.dashboard-header {
+  margin-bottom: 50px; /* Big gap between header and content */
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  font-size: 2.2rem;
+  margin: 0;
+  color: #1e293b;
+}
+
+.user-subtitle {
+  color: #64748b;
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+
+.dashboard-section {
+  margin-bottom: 60px; /* Deep space between 'Requests' and 'Events' */
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Creates a horizontal line next to the title to fill the screen */
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.empty-state {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+/* Shared Feed Layout */
+.feed-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.feed-title h1 {
+  font-size: 2rem;
+  color: #1e293b;
+  margin: 0;
+}
+
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+/* Search/Filter Bar (Optional but looks great) */
+.feed-controls {
+  background: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.add-request-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.add-request-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px); /* Modern frosted glass effect */
+}
+
+.modal-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  width: 100%; max-width: 500px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content input, .modal-content textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: inherit;
+}
+
+.modal-actions {
+  display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;
+}
+
+.confirm-btn {
+  background: #2563eb; color: white; border: none;
+  padding: 10px 20px; border-radius: 8px; cursor: pointer;
+}
+
+/* Cancel Button Styling */
+.modal-actions button[type="button"] {
+  background: transparent;
+  color: #64748b; /* Subtle grey */
+  border: 1px solid #e2e8f0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-actions button[type="button"]:hover {
+  background: #f8fafc; /* Very light blue/grey on hover */
+  color: #1e293b; /* Darker text on hover */
+  border-color: #cbd5e1;
+}
+
+/* Ensure the Confirm button and Cancel button look like a pair */
+.confirm-btn {
+  background: #2563eb;
+  color: white;
+  border: 1px solid #2563eb; /* Match the height of the cancel border */
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.confirm-btn:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.event-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.join-btn {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.join-btn:hover {
+  background: #dbeafe;
+}
+
+/* Style for when the user has already joined */
+.join-btn.joined {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.join-btn.joined:hover {
+  background: #fee2e2;
+}
+
+.request-desc {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 12px 0;
+  /* Limits description to 3 lines so cards stay uniform */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.request-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 15px;
+}
+
+.status-tag {
+  display: inline-block;
+  background: #f0fdf4;
+  color: #166534;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.request-desc {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 12px 0;
+  /* Limits description to 3 lines so cards stay uniform */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.request-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 15px;
+}
+
+.status-tag {
+  display: inline-block;
+  background: #f0fdf4;
+  color: #166534;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* Modern Offer Help Button */
+.help-btn {
+  width: 100%;
+  background: #059669; /* A nice emerald green to represent 'offering' */
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.help-btn:hover {
+  background: #047857;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.3);
+}
+
+.help-btn:active {
+  transform: translateY(0);
+}
+
+/* Optional: Add a little icon feel using CSS content if you don't have SVG icons */
+.help-btn::before {
+  content: '🤝';
+  font-size: 1.1rem;
+}
+/* Change button look when help is already offered */
+.help-btn.offered {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #059669;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Optional: Status colors */
+.status-tag.open { background: #f0fdf4; color: #166534; }
+.status-tag.in-progress { background: #fffbeb; color: #92400e; }
+
+.volunteer-list {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed #cbd5e1;
+}
+
+.volunteer-list h4 {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.volunteer-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.volunteer-list li {
+  font-size: 0.8rem;
+  background: #f1f5f9;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  color: #1e293b;
+}
+
+.help-btn.owner-btn {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+/* Card Layout Basics */
+.request-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #f1f5f9;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* Owner Control Buttons */
+.owner-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background: #f1f5f9;
+  transform: scale(1.1);
+}
+
+.icon-btn.delete:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+/* Edit Mode Form Styling */
+.edit-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.edit-mode label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.edit-mode input, .edit-mode textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.edit-mode input:focus, .edit-mode textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.save-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #94a3b8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Volunteer List Style */
+.volunteer-list {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px dashed #cbd5e1;
+}
+
+.volunteer-list h4 {
+  font-size: 0.8rem;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.volunteer-list li {
+  list-style: none;
+  font-size: 0.85rem;
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  color: #1e293b;
+}
+.help-btn.withdraw {
+  background: #fff1f2;
+  color: #e11d48;
+  border: 1px solid #fda4af;
+  box-shadow: none;
+}
+
+.help-btn.withdraw:hover {
+  background: #ffe4e6;
+  transform: translateY(-1px);
+}
