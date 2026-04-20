@@ -1,6 +1,6 @@
-# 🤝 CommunityAid: Neighborhood Support Platform
+# 🤝 Connect NGO: Neighborhood Support Platform
 
-**CommunityAid** is a real-time, peer-to-peer assistance platform built to foster local support networks. Whether it's a neighbor needing help moving furniture or someone looking for a ride to a medical appointment, CommunityAid bridges the gap through a seamless, secure, and reactive interface.
+**Connect NGO** is a real-time, peer-to-peer assistance platform built to foster local support networks. Whether it's a neighbor needing help moving furniture or someone looking for a ride to a medical appointment, CommunityAid bridges the gap through a seamless, secure, and reactive interface.
 
 ---
 
